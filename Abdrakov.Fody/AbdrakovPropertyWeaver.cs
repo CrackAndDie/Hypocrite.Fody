@@ -63,10 +63,11 @@ namespace Abdrakov.Fody
             }
 
             LogInfo?.Invoke($"{engine.Name} {engine.Version}");
-            var bindableObject = new TypeReference("Abdrakov.Engine", "BindableObject", ModuleDefinition, engine);
+            var bindableObject = new TypeReference("Abdrakov.Engine.MVVM", "BindableObject", ModuleDefinition, engine);
             var targetTypes = ModuleDefinition.GetAllTypes().Where(x => x.BaseType != null && bindableObject.IsAssignableFrom(x.BaseType)).ToArray();
-            var setPropertyMethod = ModuleDefinition.ImportReference(bindableObject.Resolve().Methods.Single(x => x.Name == "SetProperty")) ?? throw new Exception("SetProperty is null");
-            var reactiveAttribute = ModuleDefinition.FindType("Abdrakov.Engine", "BindableAttribute", engine) ?? throw new Exception("BindableAttribute is null");
+            var bindableObjectExtensions = new TypeReference("Abdrakov.Engine.Extensions", "BindableObjectExtensions", ModuleDefinition, engine).Resolve() ?? throw new Exception("BindableObjectExtensions is null");
+            var setPropertyMethod = ModuleDefinition.ImportReference(bindableObjectExtensions.Methods.Single(x => x.Name == "RaiseAndSetIfChanged")) ?? throw new Exception("RaiseAndSetIfChanged is null");
+            var reactiveAttribute = ModuleDefinition.FindType("Abdrakov.Engine.MVVM.Attributes", "BindableAttribute", engine) ?? throw new Exception("BindableAttribute is null");
             foreach (var targetType in targetTypes)
             {
                 foreach (var property in targetType.Properties.Where(x => x.IsDefined(reactiveAttribute)).ToArray())
@@ -137,8 +138,8 @@ namespace Abdrakov.Fody
                         il.Emit(OpCodes.Ldflda, field.BindDefinition(targetType));  // pop -> this.$PropertyName
                         il.Emit(OpCodes.Ldarg_1);                                   // value
                         il.Emit(OpCodes.Ldstr, property.Name);                      // "PropertyName"
-                        il.Emit(OpCodes.Call, methodReference);                     // pop * 4 -> this.SetProperty(this.$PropertyName, value, "PropertyName")
-                        il.Emit(OpCodes.Pop);                                       // We don't care about the result of SetProperty, so pop it off the stack (stack is now empty)
+                        il.Emit(OpCodes.Call, methodReference);                     // pop * 4 -> this.RaiseAndSetIfChanged(this.$PropertyName, value, "PropertyName")
+                        il.Emit(OpCodes.Pop);                                       // We don't care about the result of RaiseAndSetIfChanged, so pop it off the stack (stack is now empty)
                         il.Emit(OpCodes.Ret);                                       // Return out of the function
                     });
                 }

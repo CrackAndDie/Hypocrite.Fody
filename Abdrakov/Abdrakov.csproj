@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>Abdrakov.Fody</RootNamespace>
+		<AssemblyName>Abdrakov.Fody</AssemblyName>
+		<TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net472</TargetFrameworks>
+
+		<PackageId>Abdrakov.Fody</PackageId>
+		<Authors>crackanddie</Authors>
+		<Product>Abdrakov.Fody</Product>
+		<PackageDescription>A Fody weaver that improves the power of Abdrakov.Solutions</PackageDescription>
+		<Copyright>Copyright ©  2023</Copyright>
+		<PackageTags>Fody Weaver Reactive Bindable</PackageTags>
+		<PackageVersion>1.0.3</PackageVersion>
+		<PackageProjectUrl>https://github.com/CrackAndDie/Abdrakov.Fody</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/CrackAndDie/Abdrakov.Fody</RepositoryUrl>
+		<PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/AbdrakovSolutions.png</PackageIconUrl>
+		<PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
+		<PackageLicenseFile>NUGET_LICENSE.txt</PackageLicenseFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Fody" Version="6.8.0" PrivateAssets="none" />
+		<PackageReference Include="FodyPackaging" Version="6.8.0" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net40" Version="1.0.3" PrivateAssets="All" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="NUGET_README.md" Pack="true" PackagePath="\" />
+		<None Include="NUGET_LICENSE.txt" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Abdrakov.Fody\Abdrakov.Fody.csproj">
+			<PrivateAssets>All</PrivateAssets>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
+
+</Project>
