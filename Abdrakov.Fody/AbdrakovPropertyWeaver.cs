@@ -67,7 +67,7 @@ namespace Abdrakov.Fody
             var targetTypes = ModuleDefinition.GetAllTypes().Where(x => x.BaseType != null && bindableObject.IsAssignableFrom(x.BaseType)).ToArray();
             var bindableObjectExtensions = new TypeReference("Abdrakov.Engine.Extensions", "BindableObjectExtensions", ModuleDefinition, engine).Resolve() ?? throw new Exception("BindableObjectExtensions is null");
             var setPropertyMethod = ModuleDefinition.ImportReference(bindableObjectExtensions.Methods.Single(x => x.Name == "RaiseAndSetIfChanged")) ?? throw new Exception("RaiseAndSetIfChanged is null");
-            var reactiveAttribute = ModuleDefinition.FindType("Abdrakov.Engine.MVVM.Attributes", "BindableAttribute", engine) ?? throw new Exception("BindableAttribute is null");
+            var reactiveAttribute = ModuleDefinition.FindType("Abdrakov.Engine.MVVM.Attributes", "NotifyAttribute", engine) ?? throw new Exception("NotifyAttribute is null");
             foreach (var targetType in targetTypes)
             {
                 foreach (var property in targetType.Properties.Where(x => x.IsDefined(reactiveAttribute)).ToArray())
@@ -127,7 +127,7 @@ namespace Abdrakov.Fody
                     // Build out the setter which fires the RaiseAndSetIfChanged method
                     if (property.SetMethod is null)
                     {
-                        throw new Exception("[Bindable] is decorating " + property.DeclaringType.FullName + "." + property.Name + ", but the property has no setter so there would be nothing to react to.  Consider removing the attribute.");
+                        throw new Exception("[Notify] is decorating " + property.DeclaringType.FullName + "." + property.Name + ", but the property has no setter so there would be nothing to react to.  Consider removing the attribute.");
                     }
 
                     property.SetMethod.Body = new MethodBody(property.SetMethod);
