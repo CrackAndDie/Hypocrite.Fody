@@ -12,7 +12,7 @@
 		<PackageDescription>A Fody weaver that improves the power of Abdrakov.Solutions</PackageDescription>
 		<Copyright>Copyright ©  2023</Copyright>
 		<PackageTags>Fody Weaver Reactive Bindable</PackageTags>
-		<PackageVersion>1.1.0</PackageVersion>
+		<PackageVersion>1.1.1</PackageVersion>
 		<PackageProjectUrl>https://github.com/CrackAndDie/Abdrakov.Fody</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/CrackAndDie/Abdrakov.Fody</RepositoryUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/CADindustries/container/main/logos/baguette-custom.png</PackageIconUrl>

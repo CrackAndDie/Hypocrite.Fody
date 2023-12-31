@@ -2,10 +2,7 @@
 using Mono.Cecil.Cil;
 using Mono.Cecil.Rocks;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Abdrakov.Fody
 {
@@ -74,7 +71,7 @@ namespace Abdrakov.Fody
                 {
                     if (property.SetMethod is null)
                     {
-                        LogError?.Invoke($"Property {property.DeclaringType.FullName}.{property.Name} has no setter, therefore it is not possible for the property to change, and thus should not be marked with [Bindable]");
+                        LogError?.Invoke($"Property {property.DeclaringType.FullName}.{property.Name} has no setter, therefore it is not possible for the property to change, and thus should not be marked with [Notify]");
                         continue;
                     }
 
@@ -127,7 +124,7 @@ namespace Abdrakov.Fody
                     // Build out the setter which fires the RaiseAndSetIfChanged method
                     if (property.SetMethod is null)
                     {
-                        throw new Exception("[Notify] is decorating " + property.DeclaringType.FullName + "." + property.Name + ", but the property has no setter so there would be nothing to react to.  Consider removing the attribute.");
+                        throw new Exception("[Notify] is decorating " + property.DeclaringType.FullName + "." + property.Name + ", but the property has no setter so there would be nothing to react to. Consider removing the attribute.");
                     }
 
                     property.SetMethod.Body = new MethodBody(property.SetMethod);
