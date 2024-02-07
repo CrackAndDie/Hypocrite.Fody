@@ -1,4 +1,4 @@
-﻿using Abdrakov.Fody;
+﻿using Hypocrite.Fody;
 using Fody;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ public class ModuleWeaver : BaseModuleWeaver
 {
     public override void Execute()
     {
-        var propertyWeaver = new AbdrakovPropertyWeaver
+        var propertyWeaver = new HypocritePropertyWeaver
         {
             ModuleDefinition = ModuleDefinition,
             LogInfo = WriteInfo,

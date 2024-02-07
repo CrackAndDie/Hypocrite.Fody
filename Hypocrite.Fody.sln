@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abdrakov.Fody", "Abdrakov.Fody\Abdrakov.Fody.csproj", "{FAF1D6B8-A336-426B-9AC6-FA00176D5350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hypocrite.Fody", "Hypocrite.Fody\Hypocrite.Fody.csproj", "{FAF1D6B8-A336-426B-9AC6-FA00176D5350}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abdrakov", "Abdrakov\Abdrakov.csproj", "{C234DE8B-CCE9-4270-A84D-5BA9F0007FC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hypocrite", "Hypocrite\Hypocrite.csproj", "{C234DE8B-CCE9-4270-A84D-5BA9F0007FC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Abdrakov.Fody
+namespace Hypocrite.Fody
 {
     /// <summary>
     /// Mono.Cecil extension methods.
