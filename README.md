@@ -42,5 +42,5 @@ And create a *FodyWeavers.xml* file in Your project root with following configur
 
 <h2>Powered by:</h2>  
 
-- *Abdrakov.Fody*' logo - [Material Design Icons](https://materialdesignicons.com/)
-- *Abdrakov.Fody* is a rewritten part of [ReactiveUI](https://github.com/reactiveui/ReactiveUI)
+- *Hypocrite.Fody*' logo - [Material Design Icons](https://materialdesignicons.com/)
+- *Hypocrite.Fody* is a rewritten part of [ReactiveUI](https://github.com/reactiveui/ReactiveUI)
