@@ -11,7 +11,7 @@
 
 <h2>About:</h2>  
 
-A package that allows You to use ```[Notify]``` attribute in Your code with *Hypocrite.Desktop* library. 
+A package that allows You to use ```[Notify]```, ```[NotifyWhen]```, ```[AlsoNotify]``` attributes in Your code with *Hypocrite.Desktop* library. 
 
 <h2>Download:</h2>  
 
@@ -25,7 +25,7 @@ A package that allows You to use ```[Notify]``` attribute in Your code with *Hyp
 
 <h2>Getting started:</h2>  
 
-You can use ```[Nofity]``` attribute on any property You have in Your class but the class has to be inherited from *BindableObject*.  
+You can use ```[Nofity]```, ```[NotifyWhen]```, ```[AlsoNotify]``` attributes on any property You have in Your class but the class has to be inherited from *BindableObject*.  
 To start using this library You should add a package reference to the library in Your project like:
 ```xml
 <PackageReference Include="Hypocrite.Fody" Version="*">
