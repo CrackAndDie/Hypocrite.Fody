@@ -1,13 +1,16 @@
 ﻿using Mono.Cecil;
 using Mono.Cecil.Cil;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Hypocrite.Fody.AttributeWeavers
 {
 	public static class NotifyWeaver
 	{
-		public static void Weave(PropertyDefinition property, Action<string> logger, TypeDefinition targetType, MethodReference setPropertyMethod)
+		public static void Weave(PropertyDefinition property, Action<string> logger, TypeDefinition targetType, 
+			MethodReference setPropertyMethod, MethodReference raisePropertyMethod,
+			List<string> dependentProperties)
 		{
 			if (property.SetMethod is null)
 			{
@@ -77,6 +80,12 @@ namespace Hypocrite.Fody.AttributeWeavers
 				il.Emit(OpCodes.Ldstr, property.Name);                      // "PropertyName"
 				il.Emit(OpCodes.Call, methodReference);                     // pop * 4 -> this.RaiseAndSetIfChanged(this.$PropertyName, value, "PropertyName")
 				il.Emit(OpCodes.Pop);                                       // We don't care about the result of RaiseAndSetIfChanged, so pop it off the stack (stack is now empty)
+				foreach (var d in dependentProperties)						// Looping over dependent props
+				{
+					il.Emit(OpCodes.Ldarg_0);                               // this
+					il.Emit(OpCodes.Ldstr, d);								// "PropertyName"
+					il.Emit(OpCodes.Call, raisePropertyMethod);             // pop * 2 -> this.RaisePropertyChanged("PropertyName")
+				}
 				il.Emit(OpCodes.Ret);                                       // Return out of the function
 			});
 		}

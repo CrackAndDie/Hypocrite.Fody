@@ -3,11 +3,11 @@
     <PropertyGroup>
         <RootNamespace>Hypocrite.Fody</RootNamespace>
         <AssemblyName>Hypocrite.Fody</AssemblyName>
-        <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
         <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net472</TargetFrameworks>
     </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FodyHelpers" Version="6.8.0" developmentDependency="true"/>
+		<PackageReference Include="FodyHelpers" Version="6.8.0" developmentDependency="true" />
 	</ItemGroup>
 </Project>
